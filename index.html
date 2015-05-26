@@ -5,8 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=792, user-scalable=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<base href="/node_modules/shower-ribbon/" />
-	<link rel="stylesheet" href="styles/screen.css">
+	<link rel="stylesheet" href="node_modules/shower-ribbon/styles/screen.css">
 	<style>
 		.snowflake {
 			color: #4480B4;
@@ -29,7 +28,7 @@
 			position: absolute;
 			right: 10px;
 			bottom: 15px;
-			background: url(/images/yarfrontend.svg) no-repeat;
+			background: url(images/yarfrontend.svg) no-repeat;
 			background-size: cover;
 		}
 	</style>
@@ -142,9 +141,9 @@ if (rect.bottom > window.innerHeight) {
 
 	<section class="slide"><div>
 		<h2>Будем мерять FPS</h2>
-		<img src="/images/show-fps-meter.gif" width="100%"/>
+		<img src="images/show-fps-meter.gif" width="100%"/>
 		<p style="text-align: center;" class="next">
-			<img src="/images/fps-meter.png"/>
+			<img src="images/fps-meter.png"/>
 		</p>
 	</div></section>
 
@@ -160,11 +159,11 @@ if (rect.bottom > window.innerHeight) {
 	<section class="slide"><div>
 		<h2>Почему так получилось?</h2>
 		<p>Запишем все происходящее</p>
-		<img src="/images/recording-profile.gif" width="100%" />
+		<img src="images/recording-profile.gif" width="100%" />
 	</div></section>
 
 	<section class="slide cover"><div>
-		<img src="/images/timeline-panel.png"/>
+		<img src="images/timeline-panel.png"/>
 	</div></section>
 
 	<section class="slide shout grow"><div>
@@ -222,7 +221,7 @@ if (rect.bottom > window.innerHeight) {
 
 	<section class="slide"><div>
 		<h2>Есть еще "дерево рендеринга"</h2>
-		<img src="/images/cat.png" style="float: right" />
+		<img src="images/cat.png" style="float: right" />
 		<p>
 			Это длинный текст, который браузер разобьет на прямоугольники (свой под каждую строку)
 			в зависимости от размеров родительского
@@ -234,7 +233,7 @@ if (rect.bottom > window.innerHeight) {
 
 	<section class="slide" id="demoRects"><div>
 		<h2>Есть еще "дерево рендеринга"</h2>
-		<img src="/images/cat.png" style="float: right" />
+		<img src="images/cat.png" style="float: right" />
 		<p>
 			Это длинный текст, который браузер разобьет на прямоугольники (свой под каждую строку)
 			в зависимости от размеров родительского
@@ -275,7 +274,7 @@ if (rect.bottom > window.innerHeight) {
 	</div></section>
 
 	<section class="slide cover"><div>
-		<img src="/images/timeline-panel.png"/>
+		<img src="images/timeline-panel.png"/>
 	</div></section>
 
 	<section class="slide"><div>
@@ -307,7 +306,7 @@ for (var i = 0, l = col.length; i < l; i++ ) {
 	</div></section>
 
 	<section class="slide cover"><div>
-		<img src="/images/fast-timeline-panel.png"/>
+		<img src="images/fast-timeline-panel.png"/>
 	</div></section>
 
 	<section class="slide shout"><div>
@@ -332,12 +331,12 @@ for (var i = 0, l = col.length; i < l; i++ ) {
 
 	<section class="slide"><div>
 		<h2>Еще раз посмотрим на Timeline</h2>
-		<img src="/images/too-much-paint.png" width="100%" />
+		<img src="images/too-much-paint.png" width="100%" />
 		<p>Включаем "Show paint rectangles"</p>
 	</div></section>
 
 	<section class="slide cover"><div>
-		<img src="/images/paint-rectangles.gif" />
+		<img src="images/paint-rectangles.gif" />
 	</div></section>
 
 	<section class="slide shout"><div>
@@ -366,7 +365,7 @@ item.style.transform =
 	</div></section>
 
 	<section class="slide cover"><div>
-		<img src="/images/translate3d-paint.gif" />
+		<img src="images/translate3d-paint.gif" />
 	</div></section>
 
 	<section class="slide cover" id="gpuDemo1"><div>
@@ -396,7 +395,7 @@ item.style.transform =
 		just remove “progress” element.
 		-->
 	<div class="progress"><div></div></div>
-	<script src="../shower-core/shower.min.js"></script>
-	<script src="/js/slide-handlers.js"></script>
+	<script src="node_modules/shower-core/shower.min.js"></script>
+	<script src="js/slide-handlers.js"></script>
 </body>
 </html>

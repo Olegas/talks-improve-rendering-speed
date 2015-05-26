@@ -15,7 +15,7 @@ window.addEventListener('popstate', function(e){
       case 'gpuDemo1':
       case 'gpuDemo2':
          frame = document.getElementById(hash).getElementsByTagName('iframe')[0];
-         frame.src = '/snowflakes.html?' + frame.getAttribute('data-params');
+         frame.src = 'snowflakes.html?' + frame.getAttribute('data-params');
          break;
       case 'demoRects':
          var slide = document.getElementById(hash).firstElementChild;
