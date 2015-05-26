@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Где еще живет скорость в web</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=792, user-scalable=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<base href="/node_modules/shower-ribbon/" />
+	<link rel="stylesheet" href="styles/screen.css">
+	<style>
+		.snowflake {
+			color: #4480B4;
+			font-size: 25px;
+			position: absolute;
+			top: 0;
+		}
+		.slide>div.demoRect {
+			position: absolute;
+			outline: 1px solid red;
+			padding: 0;
+			background: #477FB7;
+			opacity: 0.3;
+		}
+	</style>
+</head>
+<body class="list">
+	<!--
+		Debug class on <body> enables
+		cyan grid on slides
+		-->
+	<header class="caption">
+		<h1>Где еще живет скорость в web</h1>
+		<p><a href="mailto:oleg@elifantiev.ru">Олег Елифантьев</a></p>
+	</header>
+	<section class="slide"><div>
+		<h2>Давайте нарисуем снежинки?</h2>
+		<p><b>Менеджер</b>: К новому году на сайт клиента нужны снежинки!</p>
+		<p style="text-align: right"><b>Junior dev</b>: Okay boss!</p>
+		<p class="note">Я читал в интернетах, что jQuery тормозит&hellip;<br />
+		Сделаю-ка я все на чистом JS!</p>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Снежинка &mdash; простая текстовая нода</h2>
+		<pre><code>function generateSnowflake() {
+	var div = document.createElement('div');
+	div.className = 'snowflake falling';
+	div.appendChild(document.createTextNode('*'));
+	...
+	return div;
+}</code></pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Снежинка &mdash; простая текстовая нода</h2>
+		<p>При конструировании зададим случайную скорость во вертикали и горизонтали</p>
+		<pre><code>	div.stepY = 2 + Math.random() * 3;
+	div.stepX = 0.1 + Math.random() * 0.1;</code></pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Разместим ее случайным образом</h2>
+		<pre><code>function addToScene(snowflake) {
+	document.body.appendChild(snowflake);
+	snowflake.style.left =
+			Math.random() * window.innerWidth + 'px';
+	snowflake.style.top =
+			Math.random() * window.innerHeight + 'px';
+}</code></pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Создадим и запустим анимацию</h2>
+		<pre><code>function letItSnow(n) {
+	while(n-- >= 0) {
+		addToScene(generateSnowflake());
+	}
+	<mark class="important">animate();</mark>
+}</code></pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Один шаг анимации: step()</h2>
+		<pre><code>var col = document.querySelectorAll('.falling');
+for (var i = 0, l = col.length; i < l; i++) {
+	var item = col[i];
+	var rect = <mark>item.getBoundingClientRect()</mark>;
+	item.style.top = rect.top + item.stepY + 'px';
+	item.style.left = rect.left +
+		Math.sin(item.x += item.stepX) + 'px';
+}</code></pre></div>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Долетевшие &mdash; пусть лежат: check()</h2>
+		<pre><code><mark class="comment">// получим коллекцию и для каждой...</mark>
+if (rect.bottom > window.innerHeight) {
+	item.classList.remove('falling');
+	<mark class="comment">// создадим новую</mark>
+	addToScene(generateSnowflake());
+	<mark class="comment">// старую через некоторое время уберем</mark>
+	setTimeout(removeFromScene.bind(null, item), 1000);
+}</code></pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Все вместе</h2>
+		<pre><code>function animate() {
+	step();
+	check();
+	setTimeout(animate, 0);
+}</code></pre>
+	</div></section>
+
+	<section class="slide cover" id="basicDemo1"><div>
+	<iframe seamless data-params="basic#50" width="100%" height="100%" src=""></iframe>
+	</div></section>
+
+
+	<section class="slide shout grow" lang="ru"><div>
+		<h2>Нужно больше снежинок!</h2>
+	</div></section>
+
+
+	<section class="slide cover" id="basicDemo2"><div>
+		<iframe seamless data-params="basic#200" width="100%" height="100%" src=""></iframe>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Что происходит?</h2>
+		<p>Как обычно, нам поможет DevTools</p>
+		<ul>
+			<li>Поймем что мерять</li>
+			<li>Локализуем проблему</li>
+			<li>Полечим</li>
+		</ul>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Будем мерять FPS</h2>
+		<img src="/images/show-fps-meter.gif" width="100%"/>
+		<p style="text-align: center;" class="next">
+			<img src="/images/fps-meter.png"/>
+		</p>
+	</div></section>
+
+
+	<section class="slide"><div>
+		<h2>Маловато!</h2>
+		<ul>
+			<li>Что бы было гладко, надо хотя бы 30fps (33 ms/frame!)</li>
+			<li>А рекомендуют &mdash; 60fps (16.6 ms/frame!)</li>
+		</ul>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Почему так получилось?</h2>
+		<p>Запишем все происходящее</p>
+		<img src="/images/recording-profile.gif" width="100%" />
+	</div></section>
+
+	<section class="slide cover"><div>
+		<img src="/images/timeline-panel.png"/>
+	</div></section>
+
+	<section class="slide shout grow"><div>
+		<h2>233 ms!</h2>
+	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>Style<br />recalculation</h2>
+	</div></section>
+
+	<section class="slide"><div>
+		<p>Как известно, CSS &mdash; <mark>каскадная</mark> таблица стилей. Есть различные источники стилей:</p>
+		<ul>
+			<li>Стили браузера</li>
+			<li>Стили пользователя</li>
+			<li>Стили страницы (css-файлы)</li>
+			<li>inline-стили элементов</li>
+		</ul>
+
+	</div></section>
+
+	<section class="slide"><div>
+		<p>Style recalculation &mdash; вычисление стилей,
+			применяемых к конкретному элементу на основании каскада всех имеющихся стилей.</p>
+		<p>Это <mark>дешевая операция</mark>.</p>
+	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>Layout</h2>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>HTML</h2>
+		<pre>
+			<code>	&lt;body&gt;</code>
+			<code>		&lt;p&gt;</code>
+			<code>			Длинный текст</code>
+			<code>			&lt;img align="right" src="..."/&gt;</code>
+			<code>			Еще текст</code>
+			<code>		&lt;/p&gt;</code>
+			<code>	&lt;/body&gt;</code>
+		</pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>HTML превращается в DOM-дерево</h2>
+		<pre><code>
++ body
++--	p
+    +--	#text
+    +-- img
+    +-- #text
+		</code></pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Есть еще "дерево рендеринга"</h2>
+		<img src="/images/cat.png" style="float: right" />
+		<p>
+			Это длинный текст, который браузер разобьет на прямоугольники (свой под каждую строку)
+			в зависимости от размеров родительского
+			блока, размера шрифта, гарнитуры и даже этого кота.
+			Набор этих прямоугольников составят "дерево рендеринга". Тут
+			еще немного текста чтобы получилось красиво&hellip;
+		</p>
+	</div></section>
+
+	<section class="slide" id="demoRects"><div>
+		<h2>Есть еще "дерево рендеринга"</h2>
+		<img src="/images/cat.png" style="float: right" />
+		<p>
+			Это длинный текст, который браузер разобьет на прямоугольники (свой под каждую строку)
+			в зависимости от размеров родительского
+			блока, размера шрифта, гарнитуры и даже этого кота.
+			Набор этих прямоугольников составит "дерево рендеринга". Тут
+			еще немного текста чтобы получилось красиво&hellip;
+		</p>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Что приводит к инвалидации дерева рендеринга?</h2>
+		<ul>
+			<li>Изменение определенных стилей элемента
+				<ul>
+					<li>Размер, гарнитура шрифта</li>
+					<li>Геометрия (width, height, margin, etc&hellip;)</li>
+					<li>etc&hellip;</li>
+				</ul>
+			</li>
+			<li>Изменение DOM-дерева</li>
+		</ul>
+		<p>А пересчет дерева рендеринга &mdash; <mark class="important">дорогая операция!</mark></p>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Оптимизации&hellip;</h2>
+		<p>Браузер всячески старается оптимизировать процесс.
+			Например, он <mark>откладывает</mark> применение стилей и пересчет дерева рендеринга
+		до окончания синхронного блока JavaScript. Таким образом он "пакетирует" несколько изменений в один расчет.</p>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Ложка дегтя</h2>
+		<p>Но если в коде мы начинаем читать стилевую информацию,
+			браузеру приходится применить <mark>все</mark> отложенные расчеты <mark>здесь и сейчас</mark>
+		для того, чтобы ответить на наш запрос.</p>
+		<p>Это происходит синхронно. Эффект сравним с работой Garbage collector.</p>
+	</div></section>
+
+	<section class="slide cover"><div>
+		<img src="/images/timeline-panel.png"/>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Что приводит к "чтению стилей"</h2>
+		<ul>
+			<li>getComputedStyle(elt)</li>
+			<li>elt.style.???</li>
+			<li>elt.getBoundingClientRect()</li>
+		</ul>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Вернемся к нашей анимации</h2>
+		<pre><code>var col = document.querySelectorAll('.falling');
+for (var i = 0, l = col.length; i < l; i++ ) {
+	<mark class="comment">// read, forced layout</mark>
+	var rect = <mark>item.getBoundingClientRect()</mark>;
+	<mark class="comment">// write, layout invalidated</mark>
+	<mark class="important">item.style.top = rect.top + item.stepY + 'px'</mark>;
+	<mark class="comment">// ...</mark>
+}</code></pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Как исправить?</h2>
+		<p>Все очень просто!</p>
+		<p>Нужно сначала все прочитать, а потом все записать!</p>
+		<p class="note">Спасибо, Кэп!</p>
+	</div></section>
+
+	<section class="slide cover"><div>
+		<img src="/images/fast-timeline-panel.png"/>
+	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>Было</h2>
+	</div></section>
+
+	<section class="slide cover" id="basicDemo3"><div>
+		<iframe seamless data-params="basic#200" width="100%" height="100%" src=""></iframe>
+	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>Стало</h2>
+	</div></section>
+
+	<section class="slide cover" id="fastDemo1"><div>
+		<iframe seamless data-params="fast#200" width="100%" height="100%" src=""></iframe>
+	</div></section>
+
+	<section class="slide cover" id="fastDemo2"><div>
+		<iframe seamless data-params="fast#300" width="100%" height="100%" src=""></iframe>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Еще раз посмотрим на Timeline</h2>
+		<img src="/images/too-much-paint.png" width="100%" />
+		<p>Включаем "Show paint rectangles"</p>
+	</div></section>
+
+	<section class="slide cover"><div>
+		<img src="/images/paint-rectangles.gif" />
+	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>Что же делать?</h2>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Заставим трудиться GPU!</h2>
+		<p>Для перемещения используем CSS Transform.</p>
+		<p>Это приведет к тому, что для каждой снежинки будет создан отдельный "слой отрисовки".
+			Операции, такие как 2D/3D трансформации, наложение прозрачности, etc&hellip;,
+			с подобными слоями происходят значительно быстрее!</p>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Переделаем анимацию на translate3d</h2>
+		<pre><code>
+item.style.top = '0px';
+item.style.transform =
+	'translate3d(' + leftPos + 'px,' +  topPos + 'px, 0)';
+		</code></pre>
+	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>Что получилось?</h2>
+	</div></section>
+
+	<section class="slide cover"><div>
+		<img src="/images/translate3d-paint.gif" />
+	</div></section>
+
+	<section class="slide cover" id="gpuDemo1"><div>
+		<iframe seamless data-params="gpu#300" width="100%" height="100%" src=""></iframe>
+	</div></section>
+
+	<section class="slide cover" id="gpuDemo2"><div>
+		<iframe seamless data-params="gpu#400" width="100%" height="100%" src=""></iframe>
+	</div></section>
+
+
+	<p class="badge"><a href="https://github.com/shower/shower">Fork me on Github</a></p>
+	<!--
+		To hide progress bar from entire presentation
+		just remove “progress” element.
+		-->
+	<div class="progress"><div></div></div>
+	<script src="../shower-core/shower.min.js"></script>
+	<script src="/js/slide-handlers.js"></script>
+</body>
+</html>

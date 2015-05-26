@@ -1,0 +1,15 @@
+{
+  "name": "talks-speed",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Oleg Elifantiev <oleg@elifantiev.ru>",
+  "license": "ISC",
+  "dependencies": {
+    "shower-core": "^1.0.7",
+    "shower-ribbon": "^1.0.11"
+  }
+}
