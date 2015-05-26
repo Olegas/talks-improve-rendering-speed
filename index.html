@@ -21,6 +21,17 @@
 			background: #477FB7;
 			opacity: 0.3;
 		}
+		.full .slide:not(.cover):not(.shout):before {
+			content: "";
+			display: block;
+			width: 75px;
+			height: 75px;
+			position: absolute;
+			right: 10px;
+			bottom: 15px;
+			background: url(/images/yarfrontend.svg) no-repeat;
+			background-size: cover;
+		}
 	</style>
 </head>
 <body class="list">
@@ -366,8 +377,19 @@ item.style.transform =
 		<iframe seamless data-params="gpu#400" width="100%" height="100%" src=""></iframe>
 	</div></section>
 
+	<section class="slide">
+		<div>
+			<h2>Спасибо за внимание! Вопросы?</h2>
+			<p></p>
+			<p style="text-align: right">
+				Елифантьев Олег<br />
+				<a href="https://twitter.com/oelifantiev">@oelifantiev</a><br />
+				Yaroslavl Frontend Meetup #5, <br />27.05.2015
+			</p>
+		</div>
+	</section>
 
-	<p class="badge"><a href="https://github.com/shower/shower">Fork me on Github</a></p>
+	<p class="badge"><a href="https://github.com/Olegas/talks-improve-rendering-speed">Fork me on Github</a></p>
 	<!--
 		To hide progress bar from entire presentation
 		just remove “progress” element.
