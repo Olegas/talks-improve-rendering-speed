@@ -305,6 +305,49 @@ for (var i = 0, l = col.length; i < l; i++ ) {
 		<p class="note">Спасибо, Кэп!</p>
 	</div></section>
 
+	<section class="slide"><div>
+		<pre><code>function animate() {
+	var col = document.querySelectorAll('.snowflake');
+	[].slice.call(col)
+		<mark>.map(readRectangles)</mark> <mark class="comment">// read all</mark>
+		.map(applyAnimationStep)
+		<mark class="important">.forEach(applyToDOM);</mark> <mark class="comment">// write all</mark>
+	setTimeout(animate, 0);
+}</code></pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<pre><code>function readRectangles(elt) {
+	var rect = <mark>elt.getBoundingClientRect()</mark>;
+	return {
+		div: elt,
+		rect: {
+			left: rect.left, top: rect.top,
+			bottom: rect.bottom
+		}
+	};
+}</code></pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<pre><code>function applyAnimationStep(item) {
+	item.rect.top = item.rect.top + item.div.stepY;
+	item.rect.left = item.rect.left +
+		Math.sin(item.div.x += item.div.stepX);
+	if (item.rect.bottom > window.innerHeight) {
+		item.mustStop = true;
+	}
+	return item;
+}</code></pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<pre><code>function applyToDOM (item) {
+	<mark class="important">item.div.style.top = item.rect.top + 'px'</mark>;
+	<mark class="important">item.div.style.left = item.rect.left + 'px'</mark>;
+}</code></pre>
+	</div></section>
+
 	<section class="slide cover"><div>
 		<img src="images/fast-timeline-panel.png"/>
 	</div></section>
