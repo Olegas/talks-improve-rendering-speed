@@ -18,6 +18,9 @@ window.addEventListener('popstate', function(e){
          frame.src = '/snowflakes.html?' + frame.getAttribute('data-params');
          break;
       case 'demoRects':
+         // Chrome only!!!
+         var bodyTransform = document.body.style.transform;
+         var scale = parseFloat(bodyTransform.match(/scale\(([\d.]+)\)/)[1]);
          var slide = document.getElementById(hash).firstElementChild;
          var diffRect = slide.getBoundingClientRect();
          slice.call(slide.querySelectorAll('*')).map(function(elt){
@@ -35,10 +38,10 @@ window.addEventListener('popstate', function(e){
             item.rects.forEach(function(rect){
                var dom = document.createElement('div');
                dom.className = 'demoRect';
-               dom.style.left = rect.left - diffRect.left + 'px';
-               dom.style.top = rect.top - diffRect.top + 'px';
-               dom.style.width = rect.right - rect.left + 'px';
-               dom.style.height = rect.bottom - rect.top + 'px';
+               dom.style.left = rect.left/scale - diffRect.left/scale + 'px';
+               dom.style.top = rect.top/scale - diffRect.top/scale + 'px';
+               dom.style.width = rect.right/scale - rect.left/scale + 'px';
+               dom.style.height = rect.bottom/scale - rect.top/scale + 'px';
                document.getElementById(hash).appendChild(dom);
             });
          });
