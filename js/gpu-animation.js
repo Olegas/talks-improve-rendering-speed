@@ -31,7 +31,8 @@ var gpuAnimation = (function(){
             }
          } else {
             item.div.style.top = '0px';
-            item.div.style.transform = 'translate3d(' + item.rect.left + 'px,' +  item.rect.top + 'px, 0)';
+            item.div.style.transform = 'translate3d(' + item.rect.left + 'px,' +  item.rect.top + 'px, 0);';
+            item.div.style.WebkitTransform = 'translate3d(' + item.rect.left + 'px,' +  item.rect.top + 'px, 0)';
          }
       });
       calculatedData.filter(function filterLaying(item){
