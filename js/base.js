@@ -15,7 +15,7 @@ function addToScene(snowflake, fromTop) {
 }
 
 function letItSnow(n, animate) {
-   while(n-- >= 0) {
+   while(n-- > 0) {
       addToScene(generateSnowflake());
    }
    document.getElementById('counter').appendChild(
