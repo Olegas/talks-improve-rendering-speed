@@ -8,12 +8,6 @@
 	<base href="/node_modules/shower-ribbon/" />
 	<link rel="stylesheet" href="styles/screen.css">
 	<style>
-		.snowflake {
-			color: #4480B4;
-			font-size: 25px;
-			position: absolute;
-			top: 0;
-		}
 		.slide>div.demoRect {
 			position: absolute;
 			outline: 1px solid red;
@@ -39,6 +33,42 @@
 		.about {
 			text-align: right;
 		}
+		.titleslide h2, .titleslide p {
+			color: black;
+		}
+
+		mark.code-keyword {
+			color: #0B1D8D;
+			font-weight: bold;
+			background: none;
+			padding: 0;
+		}
+		mark.code-reserved {
+			color: #962588;
+			font-weight: bold;
+			background: none;
+			padding: 0;
+		}
+		mark.code-property {
+			color: #968B5B;
+			background: none;
+			padding: 0;
+		}
+		mark.code-variable {
+			color: #649595;
+			background: none;
+			padding: 0;
+		}
+		mark.code-string {
+			color: #008F28;
+			background: none;
+			padding: 0;
+		}
+		mark.code-value {
+			color: #1C39F6;
+			background: none;
+			padding: 0;
+		}
 	</style>
 </head>
 <body class="list">
@@ -50,76 +80,45 @@
 		<h1>Где еще живет скорость в web</h1>
 		<p><a href="mailto:oleg@elifantiev.ru">Олег Елифантьев</a></p>
 	</header>
+
+	<section class="slide cover titleslide"><div>
+		<img src="/images/fast-and-furious-2.jpg" />
+		<h2>Где еще живет скорость в Web.</h2>
+		<p>MoscowJS #24</p>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Олег Елифантьев</h2>
+		<p>Компания Тензор, г. Ярославль<br />
+		Веб-разработчик (JavaScript, Node.JS)<br />
+		<a href="https://twitter.com/oelifantiev">@oelifantiev</a>
+	</div></section>
+
 	<section class="slide"><div>
 		<h2>Давайте нарисуем снежинки?</h2>
 		<p><b>Менеджер</b>: К новому году на сайт клиента нужны снежинки!</p>
-		<p style="text-align: right"><b>Junior dev</b>: Okay boss!</p>
-		<p class="note">Я читал в интернетах, что jQuery тормозит&hellip;<br />
-		Сделаю-ка я все на чистом JS!</p>
+		<p style="text-align: right"><b>Dev</b>: Okay boss!</p>
 	</div></section>
+
 	<section class="slide"><div>
-		<h2>Снежинка &mdash; простая текстовая нода</h2>
-		<pre><code>function generateSnowflake() {
-	var div = document.createElement('div');
-	div.className = 'snowflake falling';
-	div.appendChild(document.createTextNode('*'));
-	...
-	return div;
-}</code></pre>
+		<h2>Снежинка?</h2>
+		<ul>
+			<li>Простая текстовая нода</li>
+			<li>position: absolute</li>
+			<li>Анимируем через left, top</li>
+		</ul>
 	</div></section>
+
+
 	<section class="slide"><div>
-		<h2>Снежинка &mdash; простая текстовая нода</h2>
-		<p>При конструировании зададим случайную скорость во вертикали и горизонтали</p>
-		<pre><code>	div.stepY = 2 + Math.random() * 3;
-	div.stepX = 0.1 + Math.random() * 0.1;</code></pre>
-	</div></section>
-	<section class="slide"><div>
-		<h2>Разместим ее случайным образом</h2>
-		<pre><code>function addToScene(snowflake) {
-	document.body.appendChild(snowflake);
-	snowflake.style.left =
-			Math.random() * window.innerWidth + 'px';
-	snowflake.style.top =
-			Math.random() * window.innerHeight + 'px';
-}</code></pre>
-	</div></section>
-	<section class="slide"><div>
-		<h2>Создадим и запустим анимацию</h2>
-		<pre><code>function letItSnow(n) {
-	while(n-- >= 0) {
-		addToScene(generateSnowflake());
+		<h2>Анимировать будем так...</h2>
+		<pre><code><mark class="code-keyword">function</mark> animate() {
+	<mark class="code-keyword">var</mark> <mark class="code-variable">col</mark> = <mark class="code-reserved">document</mark>.<mark class="code-property">querySelectorAll</mark>(<mark class="code-string">'.snowflake'</mark>);
+	<mark class="code-keyword">for</mark> (<mark class="code-keyword">var</mark> <mark class="code-variable">i</mark> = <mark class="code-value">0</mark>; <mark class="code-variable">i</mark> < <mark class="code-variable">col</mark>.<mark class="code-reserved">length</mark>; <mark class="code-variable">i</mark>++) {
+		<mark class="code-keyword">var</mark> <mark class="code-variable">rect</mark> = <mark class="code-variable">col</mark>[i].<mark class="code-property">getBoundingClientRect</mark>();
+		<mark class="code-variable">col</mark>[i].<mark class="code-reserved">style</mark>.<mark class="code-reserved">top</mark> = ..., <mark class="code-variable">col</mark>[i].<mark class="code-reserved">style</mark>.<mark class="code-reserved">left</mark> = ...
 	}
-	<mark class="important">animate();</mark>
-}</code></pre>
-	</div></section>
-	<section class="slide"><div>
-		<h2>Один шаг анимации: step()</h2>
-		<pre><code>var col = document.querySelectorAll('.falling');
-for (var i = 0, l = col.length; i < l; i++) {
-	var item = col[i];
-	var rect = <mark>item.getBoundingClientRect()</mark>;
-	item.style.top = rect.top + item.stepY + 'px';
-	item.style.left = rect.left +
-		Math.sin(item.x += item.stepX) + 'px';
-}</code></pre></div>
-	</div></section>
-	<section class="slide"><div>
-		<h2>Долетевшие &mdash; пусть лежат: check()</h2>
-		<pre><code><mark class="comment">// получим коллекцию и для каждой...</mark>
-if (rect.bottom > window.innerHeight) {
-	item.classList.remove('falling');
-	<mark class="comment">// создадим новую</mark>
-	addToScene(generateSnowflake());
-	<mark class="comment">// старую через некоторое время уберем</mark>
-	setTimeout(removeFromScene.bind(null, item), 1000);
-}</code></pre>
-	</div></section>
-	<section class="slide"><div>
-		<h2>Все вместе</h2>
-		<pre><code>function animate() {
-	step();
-	check();
-	setTimeout(animate, 0);
+	<mark class="code-property">setTimeout</mark>(animate, <mark class="code-value">0</mark>);
 }</code></pre>
 	</div></section>
 
@@ -149,7 +148,8 @@ if (rect.bottom > window.innerHeight) {
 
 	<section class="slide"><div>
 		<h2>Будем мерять FPS</h2>
-		<p style="text-align: center;">
+		<img src="/images/show-fps-meter.gif" width="100%"/>
+		<p style="text-align: center;" class="next">
 			<img src="/images/fps-meter.png"/>
 		</p>
 	</div></section>
@@ -158,8 +158,8 @@ if (rect.bottom > window.innerHeight) {
 	<section class="slide"><div>
 		<h2>Маловато!</h2>
 		<ul>
-			<li>Что бы было гладко, надо хотя бы 30fps (33 ms/frame!)</li>
-			<li>А рекомендуют &mdash; 60fps (16.6 ms/frame!)</li>
+			<li>Приемлемо &mdash; хотя бы 30fps (33 ms/frame!)</li>
+			<li>Идеально &mdash; 60fps (16.6 ms/frame!)</li>
 		</ul>
 	</div></section>
 
@@ -182,19 +182,8 @@ if (rect.bottom > window.innerHeight) {
 	</div></section>
 
 	<section class="slide"><div>
-		<p>Как известно, CSS &mdash; <mark>каскадная</mark> таблица стилей. Есть различные источники стилей:</p>
-		<ul>
-			<li>Стили браузера</li>
-			<li>Стили пользователя</li>
-			<li>Стили страницы (css-файлы)</li>
-			<li>inline-стили элементов</li>
-		</ul>
-
-	</div></section>
-
-	<section class="slide"><div>
 		<p><b>Style recalculation</b> &mdash; вычисление стилей,
-			применяемых к конкретному элементу на основании каскада всех имеющихся стилей.</p>
+			применяемых к конкретному элементу.</p>
 		<p>Это <mark>дешевая операция</mark>.</p>
 	</div></section>
 
@@ -263,7 +252,7 @@ if (rect.bottom > window.innerHeight) {
 				<ul>
 					<li>Размер, гарнитура шрифта</li>
 					<li>Геометрия (width, height, margin, etc&hellip;)</li>
-					<li>etc&hellip; <a href="http://csstriggers.com/">Хороший справочник</a></li>
+					<li>etc&hellip;</li>
 				</ul>
 			</li>
 			<li>Изменение DOM-дерева</li>
@@ -282,7 +271,7 @@ if (rect.bottom > window.innerHeight) {
 		<p>Но если в коде мы начинаем читать стилевую информацию,
 			браузеру приходится применить <mark>все</mark> отложенные расчеты <mark>здесь и сейчас</mark>
 		для того, чтобы ответить на наш запрос.</p>
-		<p>Это происходит синхронно. Эффект сравним с работой Garbage collector.</p>
+		<p>Это происходит синхронно. Все прочие процессы блокируются! Эффект сравним с работой Garbage Сollector.</p>
 	</div></section>
 
 	<section class="slide cover"><div>
@@ -292,21 +281,20 @@ if (rect.bottom > window.innerHeight) {
 	<section class="slide"><div>
 		<h2>Что приводит к "чтению стилей"</h2>
 		<ul>
-			<li>getComputedStyle(elt)</li>
-			<li>elt.style.???</li>
-			<li>elt.getBoundingClientRect()</li>
+			<li><mark class="code-property">getComputedStyle</mark>(<mark class="code-variable">elt</mark>)</li>
+			<li><mark class="code-variable">elt</mark>.<mark class="code-reserved">style</mark>.???</li>
+			<li><mark class="code-variable">elt</mark>.<mark class="code-property">getBoundingClientRect</mark>()</li>
 		</ul>
 	</div></section>
 
 	<section class="slide"><div>
 		<h2>Вернемся к нашей анимации</h2>
-		<pre><code>var col = document.querySelectorAll('.falling');
-for (var i = 0, l = col.length; i < l; i++ ) {
-	<mark class="comment">// read, forced layout</mark>
-	var rect = <mark>item.getBoundingClientRect()</mark>;
-	<mark class="comment">// write, layout invalidated</mark>
-	<mark class="important">item.style.top = rect.top + item.stepY + 'px'</mark>;
-	<mark class="comment">// ...</mark>
+		<pre><code><mark class="code-keyword">var</mark> <mark class="code-variable">col</mark> = <mark class="code-reserved">document</mark>.<mark class="code-property">querySelectorAll</mark>(<mark class="code-string">'.snowflake'</mark>);
+<mark class="code-keyword">for</mark> (<mark class="code-keyword">var</mark> <mark class="code-variable">i</mark> = <mark class="code-value">0</mark>; <mark class="code-variable">i</mark> < <mark class="code-variable">col</mark>.<mark class="code-reserved">length</mark>; <mark class="code-variable">i</mark>++) {
+	<mark class="comment">// read one, forced layout</mark>
+	<mark class="code-keyword">var</mark> <mark class="code-variable">rect</mark> = <mark class="code-variable">col</mark>[i].<mark class="code-property">getBoundingClientRect</mark>();
+	<mark class="comment">// write one, layout invalidated</mark>
+	<mark class="code-variable">col</mark>[i].<mark class="code-reserved">style</mark>.<mark class="code-reserved">top</mark> = ..., <mark class="code-variable">col</mark>[i].<mark class="code-reserved">style</mark>.<mark class="code-reserved">left</mark> = ...
 }</code></pre>
 	</div></section>
 
@@ -318,45 +306,15 @@ for (var i = 0, l = col.length; i < l; i++ ) {
 	</div></section>
 
 	<section class="slide"><div>
-		<pre><code>function animate() {
-	var col = document.querySelectorAll('.snowflake');
-	[].slice.call(col)
-		<mark>.map(readRectangles)</mark> <mark class="comment">// read all</mark>
-		.map(applyAnimationStep)
-		<mark class="important">.forEach(applyToDOM);</mark> <mark class="comment">// write all</mark>
-	setTimeout(animate, 0);
-}</code></pre>
-	</div></section>
-
-	<section class="slide"><div>
-		<pre><code>function readRectangles(elt) {
-	var rect = <mark>elt.getBoundingClientRect()</mark>;
-	return {
-		div: elt,
-		rect: {
-			left: rect.left, top: rect.top,
-			bottom: rect.bottom
-		}
-	};
-}</code></pre>
-	</div></section>
-
-	<section class="slide"><div>
-		<pre><code>function applyAnimationStep(item) {
-	item.rect.top = item.rect.top + item.div.stepY;
-	item.rect.left = item.rect.left +
-		Math.sin(item.div.x += item.div.stepX);
-	if (item.rect.bottom > window.innerHeight) {
-		item.mustStop = true;
-	}
-	return item;
-}</code></pre>
-	</div></section>
-
-	<section class="slide"><div>
-		<pre><code>function applyToDOM (item) {
-	<mark class="important">item.div.style.top = item.rect.top + 'px'</mark>;
-	<mark class="important">item.div.style.left = item.rect.left + 'px'</mark>;
+		<pre><code><mark class="code-keyword">function</mark> animate() {
+	<mark class="code-keyword">var</mark> <mark class="code-variable">col</mark> = <mark class="code-reserved">document</mark>.<mark class="code-property">querySelectorAll</mark>(<mark class="code-string">'.snowflake'</mark>);
+	[].<mark class="code-property">slice</mark>.<mark class="code-property">call</mark>(<mark class="code-variable">col</mark>)
+		<mark class="comment">// read all</mark>
+		<mark>.map(readCoordinates)</mark>
+		.<mark class="code-property">map</mark>(<mark class="code-variable">applyAnimationStep</mark>)
+		<mark class="comment">// write all</mark>
+		<mark class="important">.forEach(applyToDOM);</mark>
+	<mark class="code-property">setTimeout</mark>(animate, <mark class="code-value">0</mark>);
 }</code></pre>
 	</div></section>
 
@@ -382,6 +340,79 @@ for (var i = 0, l = col.length; i < l; i++ ) {
 
 	<section class="slide cover" id="fastDemo2"><div>
 		<iframe seamless data-params="fast#300" width="100%" height="100%" src=""></iframe>
+	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>Paint</h2>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Еще раз посмотрим на Timeline</h2>
+		<img src="/images/too-much-paint.png" width="100%" />
+		<p class="next">Включаем "Show paint rectangles"</p>
+	</div></section>
+
+	<section class="slide cover"><div>
+		<img src="/images/paint-rectangles.gif" />
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Что делать? Заставим трудиться GPU!</h2>
+		<p>Вместо left и top для перемещения используем CSS Transforms</p>
+		<pre><code><mark class="code-value">transform</mark>: <mark class="code-string">translate3d</mark>(x, y, z);
+		</code></pre>
+	</div></section>
+
+	<section class="slide cover"><div>
+		<img src="/images/translate3d-paint.gif" />
+	</div></section>
+
+	<section class="slide shout">
+		<h2>Экономная анимация</h2>
+	</section>
+
+	<section class="slide"><div>
+		<h2>requestAnimationFrame!</h2>
+		<ul>
+			<li class="next">Экономит CPU</li>
+			<li class="next">Делает анимацию более плавной</li>
+			<li class="next">Дает "привязку ко времени"</li>
+		</ul>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Используем знание о времени!</h2>
+		<pre><code>function animate(ts) {
+	<mark class="code-keyword">var</mark> <mark class="code-variable">col</mark> = <mark class="code-reserved">document</mark>.<mark class="code-property">querySelectorAll</mark>(<mark class="code-string">'.snowflake'</mark>);
+	[].<mark class="code-property">slice</mark>.<mark class="code-property">call</mark>(<mark class="code-variable">col</mark>)
+		.<mark class="code-property">map</mark>(<mark>calculateNextPosition(ts)</mark>)
+		.<mark class="code-property">forEach</mark>(<mark class="code-variable">applyToDOM</mark>);
+	<mark>requestAnimationFrame(animate);</mark>
+}</code></pre>
+	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>will-change</h2>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>CSS-свойство "will-change"</h2>
+		<p>Позволяет подсказать браузеру, что будет происходить с элементом. Браузер может использовать
+		для оптимизаций</p>
+		<pre><code><mark class="code-keyword">.someElt</mark> { ... }
+<mark class="code-keyword">.someElt:hover</mark> { <mark class="code-value">will-change</mark>: <mark class="code-string">transform</mark>; }
+<mark class="code-keyword">.someElt:active</mark> { <mark class="code-value">transform</mark>: <mark class="code-string">rotate(90deg)</mark>; }
+		</code></pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>will-change ?</h2>
+		<p>Опыт автора: Chrome 43 &mdash; эффект сомнительный.</p>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Disclaimer :)</h2>
+		<p>Почти все это актуально не только для анимации!</p>
 	</div></section>
 
 	<section class="slide">

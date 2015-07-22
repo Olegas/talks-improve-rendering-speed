@@ -10,8 +10,9 @@ function generateSnowflake() {
 
 function addToScene(snowflake, fromTop) {
    document.body.appendChild(snowflake);
-   snowflake.style.left = Math.random() * window.innerWidth + 'px';
-   snowflake.style.top = fromTop ? 0 : Math.random() * window.innerHeight + 'px';
+   snowflake.onSceneSince = performance.now();
+   snowflake.style.left = (snowflake.initX = Math.random() * window.innerWidth) + 'px';
+   snowflake.style.top = (snowflake.initY = fromTop ? 0 : Math.random() * window.innerHeight) + 'px';
 }
 
 function letItSnow(n, animate) {
@@ -23,6 +24,3 @@ function letItSnow(n, animate) {
          document.getElementsByClassName('snowflake').length));
    animate();
 }
-
-
-
