@@ -83,14 +83,15 @@
 
 	<section class="slide cover titleslide"><div>
 		<img src="/images/fast-and-furious-2.jpg" />
-		<h2>Где еще живет скорость в Web.</h2>
-		<p>MoscowJS #24</p>
+		<h2>Где еще живет скорость в Web</h2>
+		<p>MoscowJS #24<br />Олег Елифантьев<br />@oelifantiev</p>
 	</div></section>
 
 	<section class="slide"><div>
 		<h2>Олег Елифантьев</h2>
 		<p>Компания Тензор, г. Ярославль<br />
 		Веб-разработчик (JavaScript, Node.JS)<br />
+		Организатор <a href="http://yarfrontend.ru/">Yaroslavl Frontend Meetup</a> (http://yarfrontend.ru)<br />
 		<a href="https://twitter.com/oelifantiev">@oelifantiev</a>
 	</div></section>
 
@@ -292,7 +293,7 @@
 		<pre><code><mark class="code-keyword">var</mark> <mark class="code-variable">col</mark> = <mark class="code-reserved">document</mark>.<mark class="code-property">querySelectorAll</mark>(<mark class="code-string">'.snowflake'</mark>);
 <mark class="code-keyword">for</mark> (<mark class="code-keyword">var</mark> <mark class="code-variable">i</mark> = <mark class="code-value">0</mark>; <mark class="code-variable">i</mark> < <mark class="code-variable">col</mark>.<mark class="code-reserved">length</mark>; <mark class="code-variable">i</mark>++) {
 	<mark class="comment">// read one, forced layout</mark>
-	<mark class="code-keyword">var</mark> <mark class="code-variable">rect</mark> = <mark class="code-variable">col</mark>[i].<mark class="code-property">getBoundingClientRect</mark>();
+	<mark class="code-keyword">var</mark> <mark class="code-variable">rect</mark> = <mark class="code-variable">col</mark>[i].<mark>getBoundingClientRect</mark>();
 	<mark class="comment">// write one, layout invalidated</mark>
 	<mark class="code-variable">col</mark>[i].<mark class="code-reserved">style</mark>.<mark class="code-reserved">top</mark> = ..., <mark class="code-variable">col</mark>[i].<mark class="code-reserved">style</mark>.<mark class="code-reserved">left</mark> = ...
 }</code></pre>
@@ -412,7 +413,14 @@
 
 	<section class="slide"><div>
 		<h2>Disclaimer :)</h2>
-		<p>Почти все это актуально не только для анимации!</p>
+		<p>Почти все это актуально не только для анимации! Любой код, работающий с DOM может выиграть!</p>
+		<ul>
+			<li class="next">Сначала чтение, затем запись</li>
+			<li class="next">transform: translate3d</li>
+			<li class="next">requestAnimationFrame</li>
+			<li class="next">will-change</li>
+			<li class="next">И не забывайте про DevTools!</li>
+		</ul>
 	</div></section>
 
 	<section class="slide">
