@@ -110,6 +110,45 @@
 		</ul>
 	</div></section>
 
+	<section class="slide"><div>
+		<pre><code>$(<mark class="code-string">'.snowflake'</mark>).<mark class="code-property">each</mark>(<mark class="code-keyword">function</mark>(){
+	<mark class="code-keyword">var</mark> <mark class="code-variable">pos</mark> = $(<mark class="code-keyword">this</mark>).<mark class="code-property">offset</mark>();
+	$(<mark class="code-keyword">this</mark>).<mark class="code-property">css</mark>({
+		<mark class="code-reserved">top</mark>: <mark class="code-variable">pos</mark>.<mark class="code-property">top</mark> + ...,
+		<mark class="code-reserved">left</mark>: <mark class="code-variable">pos</mark>.<mark class="code-property">left</mark> + ...
+	});
+});
+<mark class="code-property">setTimeout</mark>(animate, <mark class="code-value">0</mark>);</code></pre>
+	</div></section>
+
+	<section class="slide cover" id="jqueryDemo1"><div>
+		<iframe seamless data-params="jquery#50" width="100%" height="100%" src=""></iframe>
+	</div></section>
+
+	<section class="slide shout grow" lang="ru"><div>
+		<h2>Нужно больше снежинок!</h2>
+	</div></section>
+
+	<section class="slide cover" id="jqueryDemo2"><div>
+		<iframe seamless data-params="jquery#200" width="100%" height="100%" src=""></iframe>
+	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>=(</h2>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Может быть проблема в JavaScript?</h2>
+		<img class="next" src="/images/profiler--jquery-suxx.png" width="100%" />
+	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>jQuery тормозит. Расходимся.</h2>
+	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>=)</h2>
+	</div></section>
 
 	<section class="slide"><div>
 		<h2>Анимировать будем так...</h2>
@@ -122,16 +161,6 @@
 	<mark class="code-property">setTimeout</mark>(animate, <mark class="code-value">0</mark>);
 }</code></pre>
 	</div></section>
-
-	<section class="slide cover" id="basicDemo1"><div>
-	<iframe seamless data-params="basic#50" width="100%" height="100%" src=""></iframe>
-	</div></section>
-
-
-	<section class="slide shout grow" lang="ru"><div>
-		<h2>Нужно больше снежинок!</h2>
-	</div></section>
-
 
 	<section class="slide cover" id="basicDemo2"><div>
 		<iframe seamless data-params="basic#200" width="100%" height="100%" src=""></iframe>

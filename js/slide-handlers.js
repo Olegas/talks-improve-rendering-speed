@@ -7,6 +7,8 @@ window.addEventListener('popstate', function(e){
       activeFrame.src = '';
    }
    switch(hash) {
+      case 'jqueryDemo1':
+      case 'jqueryDemo2':
       case 'basicDemo1':
       case 'basicDemo2':
       case 'basicDemo3':
