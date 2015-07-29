@@ -15,7 +15,8 @@
 			background: #477FB7;
 			opacity: 0.3;
 		}
-		.full .slide:not(.cover):not(.shout):before {
+		.full .slide:not(.cover):not(.shout):before,
+		.full .slide.cover.titleslide:before {
 			content: "";
 			display: block;
 			width: 75px;
@@ -84,7 +85,7 @@
 	<section class="slide cover titleslide"><div>
 		<img src="/images/fast-and-furious-2.jpg" />
 		<h2>Где еще живет скорость в Web</h2>
-		<p>MoscowJS #24<br />Олег Елифантьев<br />@oelifantiev</p>
+		<p>MoscowJS #24<br />Олег Елифантьев, @oelifantiev</p>
 	</div></section>
 
 	<section class="slide"><div>
@@ -442,7 +443,7 @@
 
 	<section class="slide"><div>
 		<h2>Disclaimer :)</h2>
-		<p>Почти все это актуально не только для анимации! Любой код, работающий с DOM может выиграть!</p>
+		<p>Почти все это актуально не только для анимации! Любой код, работающий с DOM, может выиграть!</p>
 		<ul>
 			<li class="next">Сначала чтение, затем запись</li>
 			<li class="next">transform: translate3d</li>
@@ -450,6 +451,10 @@
 			<li class="next">will-change</li>
 			<li class="next">И не забывайте про DevTools!</li>
 		</ul>
+	</div></section>
+
+	<section class="slide cover titleslide"><div>
+		<img src="/images/fast-and-furious-2.jpg" />
 	</div></section>
 
 	<section class="slide">
