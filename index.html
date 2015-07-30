@@ -117,11 +117,11 @@
 
 	<section class="slide"><div>
 		<pre><code>$(<mark class="code-string">'.snowflake'</mark>).<mark class="code-property">each</mark>(<mark class="code-keyword">function</mark>(){
-	<mark class="code-keyword">var</mark> <mark class="code-variable">pos</mark> = $(<mark class="code-keyword">this</mark>).<mark class="code-property">offset</mark>();
-	$(<mark class="code-keyword">this</mark>).<mark class="code-property">css</mark>({
-		<mark class="code-reserved">top</mark>: <mark class="code-variable">pos</mark>.<mark class="code-property">top</mark> + ...,
-		<mark class="code-reserved">left</mark>: <mark class="code-variable">pos</mark>.<mark class="code-property">left</mark> + ...
-	});
+   <mark class="code-keyword">var</mark> <mark class="code-variable">pos</mark> = $(<mark class="code-keyword">this</mark>).<mark class="code-property">offset</mark>();
+   $(<mark class="code-keyword">this</mark>).<mark class="code-property">css</mark>({
+      <mark class="code-reserved">top</mark>: <mark class="code-variable">pos</mark>.<mark class="code-property">top</mark> + ...,
+      <mark class="code-reserved">left</mark>: <mark class="code-variable">pos</mark>.<mark class="code-property">left</mark> + ...
+   });
 });
 <mark class="code-property">setTimeout</mark>(animate, <mark class="code-value">0</mark>);</code></pre>
 	</div></section>
@@ -158,12 +158,12 @@
 	<section class="slide"><div>
 		<h2>Анимировать будем так...</h2>
 		<pre><code><mark class="code-keyword">function</mark> animate() {
-	<mark class="code-keyword">var</mark> <mark class="code-variable">col</mark> = <mark class="code-reserved">document</mark>.<mark class="code-property">querySelectorAll</mark>(<mark class="code-string">'.snowflake'</mark>);
-	<mark class="code-keyword">for</mark> (<mark class="code-keyword">var</mark> <mark class="code-variable">i</mark> = <mark class="code-value">0</mark>; <mark class="code-variable">i</mark> < <mark class="code-variable">col</mark>.<mark class="code-reserved">length</mark>; <mark class="code-variable">i</mark>++) {
-		<mark class="code-keyword">var</mark> <mark class="code-variable">rect</mark> = <mark class="code-variable">col</mark>[i].<mark class="code-property">getBoundingClientRect</mark>();
-		<mark class="code-variable">col</mark>[i].<mark class="code-reserved">style</mark>.<mark class="code-reserved">top</mark> = ..., <mark class="code-variable">col</mark>[i].<mark class="code-reserved">style</mark>.<mark class="code-reserved">left</mark> = ...
-	}
-	<mark class="code-property">setTimeout</mark>(animate, <mark class="code-value">0</mark>);
+   <mark class="code-keyword">var</mark> <mark class="code-variable">col</mark> = <mark class="code-reserved">document</mark>.<mark class="code-property">querySelectorAll</mark>(<mark class="code-string">'.snowflake'</mark>);
+   <mark class="code-keyword">for</mark> (<mark class="code-keyword">var</mark> <mark class="code-variable">i</mark> = <mark class="code-value">0</mark>; <mark class="code-variable">i</mark> < <mark class="code-variable">col</mark>.<mark class="code-reserved">length</mark>; <mark class="code-variable">i</mark>++) {
+      <mark class="code-keyword">var</mark> <mark class="code-variable">rect</mark> = <mark class="code-variable">col</mark>[i].<mark class="code-property">getBoundingClientRect</mark>();
+      <mark class="code-variable">col</mark>[i].<mark class="code-reserved">style</mark>.<mark class="code-reserved">top</mark> = ..., <mark class="code-variable">col</mark>[i].<mark class="code-reserved">style</mark>.<mark class="code-reserved">left</mark> = ...
+   }
+   <mark class="code-property">setTimeout</mark>(animate, <mark class="code-value">0</mark>);
 }</code></pre>
 	</div></section>
 
@@ -326,10 +326,10 @@
 		<h2>Вернемся к нашей анимации</h2>
 		<pre><code><mark class="code-keyword">var</mark> <mark class="code-variable">col</mark> = <mark class="code-reserved">document</mark>.<mark class="code-property">querySelectorAll</mark>(<mark class="code-string">'.snowflake'</mark>);
 <mark class="code-keyword">for</mark> (<mark class="code-keyword">var</mark> <mark class="code-variable">i</mark> = <mark class="code-value">0</mark>; <mark class="code-variable">i</mark> < <mark class="code-variable">col</mark>.<mark class="code-reserved">length</mark>; <mark class="code-variable">i</mark>++) {
-	<mark class="comment">// read one, forced layout</mark>
-	<mark class="code-keyword">var</mark> <mark class="code-variable">rect</mark> = <mark class="code-variable">col</mark>[i].<mark>getBoundingClientRect</mark>();
-	<mark class="comment">// write one, layout invalidated</mark>
-	<mark class="code-variable">col</mark>[i].<mark class="code-reserved">style</mark>.<mark class="code-reserved">top</mark> = ..., <mark class="code-variable">col</mark>[i].<mark class="code-reserved">style</mark>.<mark class="code-reserved">left</mark> = ...
+   <mark class="comment">// read one, forced layout</mark>
+   <mark class="code-keyword">var</mark> <mark class="code-variable">rect</mark> = <mark class="code-variable">col</mark>[i].<mark>getBoundingClientRect</mark>();
+   <mark class="comment">// write one, layout invalidated</mark>
+   <mark class="code-variable">col</mark>[i].<mark class="code-reserved">style</mark>.<mark class="code-reserved">top</mark> = ..., <mark class="code-variable">col</mark>[i].<mark class="code-reserved">style</mark>.<mark class="code-reserved">left</mark> = ...
 }</code></pre>
 	</div></section>
 
@@ -342,14 +342,14 @@
 
 	<section class="slide"><div>
 		<pre><code><mark class="code-keyword">function</mark> animate() {
-	<mark class="code-keyword">var</mark> <mark class="code-variable">col</mark> = <mark class="code-reserved">document</mark>.<mark class="code-property">querySelectorAll</mark>(<mark class="code-string">'.snowflake'</mark>);
-	[].<mark class="code-property">slice</mark>.<mark class="code-property">call</mark>(<mark class="code-variable">col</mark>)
-		<mark class="comment">// read all</mark>
-		<mark>.map(readCoordinates)</mark>
-		.<mark class="code-property">map</mark>(<mark class="code-variable">applyAnimationStep</mark>)
-		<mark class="comment">// write all</mark>
-		<mark class="important">.forEach(applyToDOM);</mark>
-	<mark class="code-property">setTimeout</mark>(animate, <mark class="code-value">0</mark>);
+   <mark class="code-keyword">var</mark> <mark class="code-variable">col</mark> = <mark class="code-reserved">document</mark>.<mark class="code-property">querySelectorAll</mark>(<mark class="code-string">'.snowflake'</mark>);
+   [].<mark class="code-property">slice</mark>.<mark class="code-property">call</mark>(<mark class="code-variable">col</mark>)
+      <mark class="comment">// read all</mark>
+      <mark>.map(readCoordinates)</mark>
+         .<mark class="code-property">map</mark>(<mark class="code-variable">applyAnimationStep</mark>)
+         <mark class="comment">// write all</mark>
+         <mark class="important">.forEach(applyToDOM);</mark>
+   <mark class="code-property">setTimeout</mark>(animate, <mark class="code-value">0</mark>);
 }</code></pre>
 	</div></section>
 
@@ -418,11 +418,11 @@
 	<section class="slide"><div>
 		<h2>Используем знание о времени!</h2>
 		<pre><code>function animate(ts) {
-	<mark class="code-keyword">var</mark> <mark class="code-variable">col</mark> = <mark class="code-reserved">document</mark>.<mark class="code-property">querySelectorAll</mark>(<mark class="code-string">'.snowflake'</mark>);
-	[].<mark class="code-property">slice</mark>.<mark class="code-property">call</mark>(<mark class="code-variable">col</mark>)
-		.<mark class="code-property">map</mark>(<mark>calculateNextPosition(ts)</mark>)
-		.<mark class="code-property">forEach</mark>(<mark class="code-variable">applyToDOM</mark>);
-	<mark>requestAnimationFrame(animate);</mark>
+   <mark class="code-keyword">var</mark> <mark class="code-variable">col</mark> = <mark class="code-reserved">document</mark>.<mark class="code-property">querySelectorAll</mark>(<mark class="code-string">'.snowflake'</mark>);
+   [].<mark class="code-property">slice</mark>.<mark class="code-property">call</mark>(<mark class="code-variable">col</mark>)
+      .<mark class="code-property">map</mark>(<mark>calculateNextPosition(ts)</mark>)
+      .<mark class="code-property">forEach</mark>(<mark class="code-variable">applyToDOM</mark>);
+   <mark>requestAnimationFrame(animate);</mark>
 }</code></pre>
 	</div></section>
 
