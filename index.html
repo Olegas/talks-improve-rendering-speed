@@ -8,6 +8,27 @@
 	<base href="node_modules/shower-ribbon/" />
 	<link rel="stylesheet" href="styles/screen.css">
 	<style>
+		@font-face {
+			font-family: "PFAgoraSansPro";
+			src: url("../../font/PFAgoraSansPro-Medium.ttf") format("truetype");
+			font-weight: 700;
+		}
+		@font-face {
+			font-family: "PFAgoraSansPro";
+			src: url("../../font/PFAgoraSansPro-Light.ttf") format("truetype");
+			font-weight: normal;
+		}
+		body .slide, .slide h2 {
+			font-family: "PFAgoraSansPro" !important;
+			color: #000;
+		}
+		.slide:after {
+			top: auto;
+			bottom: 5px;
+			right: 10px;
+			background: none;
+			color: #8F8F8F;
+		}
 		.slide>div.demoRect {
 			position: absolute;
 			outline: 1px solid red;
@@ -15,17 +36,16 @@
 			background: #477FB7;
 			opacity: 0.3;
 		}
-		.full .slide:not(.cover):not(.shout):before,
-		.full .slide.cover.titleslide:before {
+		.full .slide:not(.cover):not(.shout):before {
 			content: "";
 			display: block;
-			width: 75px;
-			height: 75px;
+			left: 0;
+			right: 62px;
+			height: 94px;
 			position: absolute;
-			right: 10px;
-			bottom: 15px;
-			background: url(../../images/tensor-logo.jpg) no-repeat;
-			background-size: cover;
+			bottom: -24px;
+			background: url(../../images/el-03.png) no-repeat;
+			background-size: contain;
 		}
 		mark.important{
 			background:#C00;
@@ -426,10 +446,10 @@
 		<h2>Послесловие</h2>
 		<p>Все это актуально не только для анимации! Любой код, работающий с DOM, может выиграть!</p>
 		<ul>
-			<li class="next">Сначала чтение, затем запись</li>
+			<li class="next">сначала чтение, затем запись</li>
 			<li class="next">transform: translate3d</li>
 			<li class="next">requestAnimationFrame</li>
-			<li class="next">И не забывайте про DevTools!</li>
+			<li class="next">и не забывайте про DevTools!</li>
 		</ul>
 	</div></section>
 
